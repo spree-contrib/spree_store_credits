@@ -1,0 +1,10 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+
+<h1><%=t("editing_store_credit")%></h1>
+
+<%= render 'shared/error_messages', :target => @store_credit %>
+
+<%= form_for(:store_credit, :url => object_url, :html => { :method => :put }) do |f| %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <%= render :partial => "admin/shared/edit_resource_links" %>
+<% end %>

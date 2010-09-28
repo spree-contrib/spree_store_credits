@@ -1,0 +1,3 @@
+class StoreCreditAdjustment < Adjustment
+
+end

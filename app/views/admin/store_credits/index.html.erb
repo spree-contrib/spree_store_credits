@@ -1,0 +1,39 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+
+<!--<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <p><%= button_link_to t("new_store_credit"), new_object_url, :icon => 'add' %></p>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+-->
+
+<h1><%=t("listing_store_credits")%></h1>
+<table class="index">
+  <thead>
+    <tr>
+      <th><%= t("user") %></th>
+      <th><%= t("amount") %></th>
+      <th><%= t("reason") %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @store_credits.each do |store_credit|%>
+      <tr id="<%= dom_id store_credit %>">
+        <td><%= store_credit.user.email %></td>
+        <td><%= store_credit.amount %></td>
+        <td><%= store_credit.reason %></td>
+        <td class="actions">
+          <%=link_to_edit store_credit %> &nbsp;
+          <%=link_to_delete store_credit %>
+      </tr>
+    <% end %>
+    <% if @store_credits.empty? %>
+      <tr><td colspan="4"><%= t(:none) %></td></tr>
+    <% end %>
+  </tbody>
+</table>
+
