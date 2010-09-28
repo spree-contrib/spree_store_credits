@@ -1,15 +1,5 @@
 <%= render :partial => 'admin/shared/configuration_menu' %>
 
-<!--<div class='toolbar'>
-  <ul class='actions'>
-    <li>
-      <p><%= button_link_to t("new_store_credit"), new_object_url, :icon => 'add' %></p>
-    </li>
-  </ul>
-  <br class='clear' />
-</div>
--->
-
 <h1><%=t("listing_store_credits")%></h1>
 <table class="index">
   <thead>
@@ -23,7 +13,7 @@
   <tbody>
     <% @store_credits.each do |store_credit|%>
       <tr id="<%= dom_id store_credit %>">
-        <td><%= store_credit.user.email %></td>
+        <td><%= link_to store_credit.user.email, admin_user_url(store_credit.user) %></td>
         <td><%= store_credit.amount %></td>
         <td><%= store_credit.reason %></td>
         <td class="actions">

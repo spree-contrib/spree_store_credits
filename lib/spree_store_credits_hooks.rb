@@ -14,7 +14,7 @@ class SpreeStaticContentHooks < Spree::ThemeSupport::HookListener
     %(
     <% if (current_user.store_credits_total > 0) %>
     <br style='clear:both;' />
-    <p>You have $<%= current_user.store_credits_total %> of store credits</p>
+    <p>You have <%= number_to_currency current_user.store_credits_total %> of store credits</p>
     <p>
       <label>Enter amount, which you want to use</label><br />
       <%= form.text_field :store_credit_amount, :size => 19 %>
@@ -22,4 +22,6 @@ class SpreeStaticContentHooks < Spree::ThemeSupport::HookListener
     <% end %>
     )
   end
+  
+  insert_after :account_my_orders, :partial => 'users/store_credits'
 end

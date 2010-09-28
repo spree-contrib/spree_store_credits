@@ -2,7 +2,7 @@ Order.class_eval do
   attr_accessible :store_credit_amount
   attr_accessor :store_credit_amount
   before_save :process_store_credit, :if => "@store_credit_amount"
-  has_many :store_credits, :conditions => "source_type='StoreCredit'"
+  has_many :store_credits, :class_name => 'StoreCreditAdjustment', :conditions => "source_type='StoreCredit'"
   
   private
   def process_store_credit
@@ -13,7 +13,8 @@ Order.class_eval do
           StoreCreditAdjustment.create(
             :order => self,
             :label => I18n.t(:store_credit),
-            :amount => -@store_credit_amount.abs
+            :amount => -@store_credit_amount.abs,
+            :source_type => "StoreCredit"
           )
 
           user.store_credits.each do |store_credit|
