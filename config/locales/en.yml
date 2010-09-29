@@ -1,9 +1,16 @@
 ---
 en:
   add_store_credit: "Add store credit"
+  current_store_credit: "Current store credit"
   editing_store_credit: "Editing store credit"
+  enter_desired_amount_of_store_credit: "Enter amount, which you want to use"
   listing_store_credits: "Store credits"
   new_store_credit: "New store credit"
+  manage_store_credits: "Manage store credits"
+  orders_with_store_credit: "Orders with store credit"
+  remaining_amount: "Remaining amount"
   store_credit: "Store Credit"
   store_credits: "Store Credits"
-
+  you_have_store_credit: "You have %{amount} of store credits"
+  was_fully_used: "was fully used"
+  was_partially_used: "was partially used"

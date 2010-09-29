@@ -1,8 +1,8 @@
 <h2><%= t("store_credits") %></h2>
 <p>
-Current store credit: <strong><%= number_to_currency @user.store_credits_total %></strong>
+<%= t('current_store_credit') %>: <strong><%= number_to_currency @user.store_credits_total %></strong>
 </p>
-<h3>Orders with store credit</h3>
+<h3><%= t('orders_with_store_credit') %></h3>
 <table class="order-summary" width="545">
   <thead>
     <tr>

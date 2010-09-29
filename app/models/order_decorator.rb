@@ -1,7 +1,8 @@
 Order.class_eval do
-  attr_accessible :store_credit_amount
-  attr_accessor :store_credit_amount
+  attr_accessible :store_credit_amount, :remove_store_credits
+  attr_accessor :store_credit_amount, :remove_store_credits
   before_save :process_store_credit, :if => "@store_credit_amount"
+  before_save :remove_store_credits
   has_many :store_credits, :class_name => 'StoreCreditAdjustment', :conditions => "source_type='StoreCredit'"
   
   private
@@ -30,6 +31,18 @@ Order.class_eval do
               end
             end
           end
+        end
+      end
+    end
+  end
+  
+  def remove_store_credits
+    if @remove_store_credits == '1'
+      amount_return = store_credits.sum(:amount).abs
+      if amount_return > 0
+        transaction do
+          StoreCredit.create(:user => user, :amount => amount_return, :reason => "Return")
+          store_credits.clear
         end
       end
     end
