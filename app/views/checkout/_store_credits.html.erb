@@ -1,0 +1,10 @@
+<% if (current_user.store_credits_total > 0) %>
+<br style='clear:both;' />
+<p><%= t('you_have_store_credit', 
+       :amount => number_to_currency(current_user.store_credits_total + @order.store_credit_amount))%>
+</p>
+<p>
+  <label><%= t('enter_desired_amount_of_store_credit') %></label><br />
+  <%= form.text_field :store_credit_amount, :size => 19 %>
+</p>
+<% end %>

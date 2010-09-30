@@ -5,34 +5,45 @@ Order.class_eval do
   before_save :remove_store_credits
   has_many :store_credits, :class_name => 'StoreCreditAdjustment', :conditions => "source_type='StoreCredit'"
   
+  def store_credit_amount
+    store_credits.sum(:amount).abs
+  end
+  
+  
   private
   def process_store_credit
+    return if self.total == 0
     @store_credit_amount = BigDecimal.new(@store_credit_amount.to_s).round(2)
+    delta_amount = store_credits.present? ? 
+                    @store_credit_amount - store_credit_amount :
+                    @store_credit_amount
+    # store credit can't be greater than order total
+    delta_amount = [delta_amount, self.total].min
+
     if @store_credit_amount > 0 && user && user.store_credits_total > 0
       transaction do
-        if user.reload.store_credits_total >= @store_credit_amount
-          StoreCreditAdjustment.create(
-            :order => self,
-            :label => I18n.t(:store_credit),
-            :amount => -@store_credit_amount.abs,
-            :source_type => "StoreCredit"
-          )
+        if user.reload.store_credits_total >= delta_amount
+          sca = StoreCreditAdjustment.find_or_create_by_order_id_and_source_type(self.id, "StoreCredit")
+          sca.update_attributes({:amount => -(delta_amount + store_credit_amount), :label => I18n.t(:store_credit)})
 
           user.store_credits.each do |store_credit|
-            break if @store_credit_amount <= 0.005
+            break if delta_amount == 0
             if store_credit.remaining_amount > 0
-              if store_credit.remaining_amount > @store_credit_amount
-                store_credit.remaining_amount -= @store_credit_amount
+              if store_credit.remaining_amount > delta_amount
+                store_credit.remaining_amount -= delta_amount
                 store_credit.save
-                @store_credit_amount = 0
+                delta_amount = 0
               else
-                @store_credit_amount -= store_credit.remaining_amount
+                delta_amount -= store_credit.remaining_amount
                 store_credit.update_attribute(:remaining_amount, 0)
               end
             end
           end
+          
+          self.update_totals
         end
       end
+      @store_credit_amount = 0
     end
   end
   

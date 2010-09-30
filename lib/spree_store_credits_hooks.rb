@@ -10,20 +10,7 @@ class SpreeStaticContentHooks < Spree::ThemeSupport::HookListener
      )     
   end
   
-  insert_after :checkout_payment_step do
-    %(
-    <% if (current_user.store_credits_total > 0) %>
-    <br style='clear:both;' />
-    <p><%= t('you_have_store_credit', 
-            :amount => number_to_currency(current_user.store_credits_total))%>
-    </p>
-    <p>
-      <label><%= t('enter_desired_amount_of_store_credit') %></label><br />
-      <%= form.text_field :store_credit_amount, :size => 19 %>
-    </p>
-    <% end %>
-    )
-  end
+  insert_after :checkout_payment_step, :partial => 'checkout/store_credits'
   
   insert_after :account_my_orders, :partial => 'users/store_credits'
   

@@ -4,11 +4,4 @@ class StoreCredit < ActiveRecord::Base
   validates :user, :presence => true
   
   belongs_to :user
-  before_create :set_remaining_amount
-  
-  private
-  
-  def set_remaining_amount
-    self.remaining_amount = self.amount
-  end
 end
