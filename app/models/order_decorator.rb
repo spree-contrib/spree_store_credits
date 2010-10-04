@@ -12,8 +12,9 @@ Order.class_eval do
   
   private
   def process_store_credit
-    return if self.total == 0
     @store_credit_amount = BigDecimal.new(@store_credit_amount.to_s).round(2)
+    return if self.total == 0 && @store_credit_amount > self.store_credit_amount
+    
     delta_amount = store_credits.present? ? 
                     @store_credit_amount - store_credit_amount :
                     @store_credit_amount
