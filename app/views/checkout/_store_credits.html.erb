@@ -1,4 +1,4 @@
-<% if (current_user.store_credits_total > 0) %>
+<% if (current_user && current_user.store_credits_total > 0) %>
 <br style='clear:both;' />
 <p><%= t('you_have_store_credit', 
        :amount => number_to_currency(current_user.store_credits_total + @order.store_credit_amount))%>
