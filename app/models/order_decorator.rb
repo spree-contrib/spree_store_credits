@@ -46,7 +46,9 @@ Order.class_eval do
             end
           end
 
+          #recalc totals and ensure payment is set to new amount
           update_totals
+          payment.amount = total if payment
         end
       end
       @store_credit_amount = 0
