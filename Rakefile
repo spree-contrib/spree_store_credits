@@ -59,8 +59,11 @@ gems
     end
 
     def install_gems
-      generate 'spree_core:install -f'
-      generate 'spree_auth:install -f'
+      inside "test_app" do
+        run 'rake spree_core:install'
+        run 'rake spree_auth:install'
+      end
+
       generate 'spree_store_credits:install -f'
     end
 
