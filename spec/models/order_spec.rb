@@ -55,17 +55,26 @@ describe Order do
       order.adjustments[0].amount.should == -5.0
     end
 
+    it "should process credits if order total is already zero" do
+      order.stub(:total => 0)
+      order.store_credit_amount = 5.0
+      order.should_receive(:process_store_credit)
+      order.save
+      order.store_credits.size.should == 0
+      order.store_credit_amount.should == 0.0
+    end
+
     context "with an existing adjustment" do
       before { order.adjustments.create(:source_type => "StoreCredit",  :label => I18n.t(:store_credit) , :amount => -10) }
 
-      it "should decrement existing adjustment is specific amount is less than adjustment amount" do
+      it "should decrease existing adjustment if specific amount is less than adjustment amount" do
         order.store_credit_amount = 5.0
         order.save
         order.store_credits.size.should == 1
         order.store_credit_amount.should == 5.0
       end
 
-      it "should increase existing adjustment is specified amount is greater than adjustment amount" do
+      it "should increase existing adjustment if specified amount is greater than adjustment amount" do
         order.store_credit_amount = 25.0
         order.save
         order.store_credits.size.should == 1
@@ -77,6 +86,14 @@ describe Order do
         order.save
         order.store_credits.size.should == 0
         order.store_credit_amount.should == 0.0
+      end
+
+      it "should decrease existing adjustment when existing credit amount is equal to the order total" do
+        order.stub(:total => 10)
+        order.store_credit_amount = 5.0
+        order.save
+        order.store_credits.size.should == 1
+        order.store_credit_amount.should == 5.0
       end
     end
 
