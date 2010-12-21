@@ -140,29 +140,33 @@ describe Order do
 
 
   context "ensure_sufficient_credit" do
+    let(:payment) { mock_model(Payment, :checkout? => true, :amount => 50)}
     before do
       order.adjustments.create(:source_type => "StoreCredit",  :label => I18n.t(:store_credit) , :amount => -10)
-      order.stub(:completed? => true, :store_credit_amount => 35, :payment => mock_model(Payment))
+      order.stub(:completed? => true, :store_credit_amount => 35, :payment => payment )
+
     end
 
     it "should do nothing when user has credits" do
       order.store_credits.should_not_receive(:destroy_all)
-      order.payment.should_not_receive(:amount=).with(50)
+      order.payment.should_not_receive(:update_attributes_without_callbacks)
       order.send(:ensure_sufficient_credit)
     end
 
     context "when user no longer has sufficient credit to cover entire credit amount" do
-      before { user.stub(:store_credits_total => 0.0) }
+      before do
+        payment.stub(:amount => 40)
+        user.stub(:store_credits_total => 0.0)
+      end
 
       it "should destory all store credit adjustments" do
-        order.payment.stub(:amount= => true, :save => true)
+        order.payment.stub(:update_attributes_without_callbacks)
         order.store_credits.should_receive(:destroy_all)
         order.send(:ensure_sufficient_credit)
       end
 
       it "should update payment" do
-        order.payment.should_receive(:amount=).with(50)
-        order.payment.should_receive(:save)
+        order.payment.should_receive(:update_attributes_without_callbacks).with(:amount => 50)
         order.send(:ensure_sufficient_credit)
       end
     end

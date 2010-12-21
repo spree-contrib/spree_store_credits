@@ -83,10 +83,6 @@ Order.class_eval do
       store_credits.destroy_all
 
       update!
-      if payment
-        payment.amount = total
-        payment.save
-      end
     end
   end
 
