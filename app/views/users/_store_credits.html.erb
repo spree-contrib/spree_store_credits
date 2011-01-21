@@ -2,6 +2,7 @@
 <p>
 <%= t('current_store_credit') %>: <strong><%= number_to_currency @user.store_credits_total %></strong>
 </p>
+<% if @orders_with_store_credit.present? %>
 <h3><%= t('orders_with_store_credit') %></h3>
 <table class="order-summary" width="545">
   <thead>
@@ -22,8 +23,9 @@
       <td><%= t(order.state).titleize %></td>
       <td><%= order.user.email if order.user %></td>
       <td><%= number_to_currency order.total %></td>
-      <td><%= number_to_currency order.store_credits.sum(:amount) %></td>
+      <td><%= number_to_currency order.store_credit_amount %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
+<% end %>
