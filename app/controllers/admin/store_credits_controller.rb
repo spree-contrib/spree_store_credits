@@ -1,23 +1,12 @@
-class Admin::StoreCreditsController < Admin::BaseController
-  resource_controller
+class Admin::StoreCreditsController < Admin::ResourceController
   before_filter :check_amounts, :only => [:edit, :update]
-  before_filter :set_remaining_amount, :only => [:create, :update]
-  
-  create.response do |wants|
-    wants.html { redirect_to collection_url }
-  end
-
-  update.response do |wants|
-    wants.html { redirect_to collection_url }
-  end
-  
-  destroy.success.wants.js { render_js_for_destroy }
+  prepend_before_filter :set_remaining_amount, :only => [:create, :update]
   
   private
   def check_amounts
-    if (object.remaining_amount < object.amount)
+    if (@store_credit.remaining_amount < @store_credit.amount)
       flash[:error] = "Can't be edit, b/c already was used."
-      redirect_to collection_url
+      redirect_to admin_store_credits_path
     end
   end
   

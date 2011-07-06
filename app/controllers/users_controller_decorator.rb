@@ -4,6 +4,6 @@ UsersController.class_eval do
   private
   
   def find_orders_with_store_credit
-    @orders_with_store_credit = object.orders.joins(:adjustments).where(:adjustments => {:source_type => 'StoreCredit'})
+    @orders_with_store_credit = @user.orders.joins(:adjustments).where(:adjustments => {:source_type => 'StoreCredit'})
   end
 end
