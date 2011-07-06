@@ -1,5 +1,4 @@
 require 'spree_core'
-require 'spree_store_credits_hooks'
 
 module SpreeStoreCredits
   class Engine < Rails::Engine
