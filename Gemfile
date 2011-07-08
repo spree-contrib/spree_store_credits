@@ -33,8 +33,5 @@ group :cucumber do
     gem "ruby-debug19"
   end
 end
-gem 'spree_core', :path => '/home/jsquires/src/spree/master/core'
-gem 'spree_auth', :path => '/home/jsquires/src/spree/master/auth'
-gem 'spree_promo', :path => '/home/jsquires/src/spree/master/promo'
-gem 'spree_store_credits', :path => '/home/jsquires/src/spree/jsqu99_spree_store_credits'
+gem 'spree', :git => 'git://github.com/spree/spree.git'
 gem 'sqlite3-ruby'
