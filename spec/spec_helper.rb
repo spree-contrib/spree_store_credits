@@ -1,6 +1,5 @@
 :# This file is copied to ~/spec when you run 'ruby script/generate rspec'
 # from the project root directory.
-debugger
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../test_app/config/environment", __FILE__)
 require 'rspec/rails'
