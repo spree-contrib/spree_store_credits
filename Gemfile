@@ -34,4 +34,3 @@ group :cucumber do
   end
 end
 gem 'spree', :git => 'git://github.com/spree/spree.git'
-gem 'sqlite3-ruby'
