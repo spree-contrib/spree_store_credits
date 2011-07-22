@@ -1,3 +1,4 @@
+<% if @user.has_store_credit? %>
 <h2><%= t("store_credits") %></h2>
 <p>
 <%= t('current_store_credit') %>: <strong><%= number_to_currency @user.store_credits_total %></strong>
@@ -28,4 +29,5 @@
   <% end %>
   </tbody>
 </table>
+<% end %>
 <% end %>
