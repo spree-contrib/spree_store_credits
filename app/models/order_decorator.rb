@@ -1,9 +1,12 @@
 Order.class_eval do
   attr_accessible :store_credit_amount, :remove_store_credits
   attr_accessor :store_credit_amount, :remove_store_credits
-  before_save :process_store_credit, :if => "@store_credit_amount"
-  before_save :remove_store_credits
-  after_save :ensure_sufficient_credit
+  # the check for user? below is to ensure we don't break the
+  # admin app when creating a new order from the admin console
+  # In that case, we create an order before assigning a user
+  before_save :process_store_credit, :if => "self.user? && @store_credit_amount"
+  before_save :remove_store_credits, :if => "self.user?"
+  after_save :ensure_sufficient_credit, :if => "self.user?"
 
   has_many :store_credits, :class_name => 'StoreCreditAdjustment', :conditions => "source_type='StoreCredit'"
 
