@@ -14,7 +14,7 @@
   <tbody>
     <% @store_credits.each do |store_credit|%>
       <tr id="<%= dom_id store_credit %>">
-        <td><%= link_to store_credit.user.email, admin_user_url(store_credit.user) %></td>
+        <td><%= link_to store_credit.user.email, admin_user_url(store_credit.user) if store_credit.user.present? %></td>
         <td><%= number_to_currency store_credit.amount %></td>
         <td><%= number_to_currency store_credit.remaining_amount %></td>
         <td><%= store_credit.reason %></td>
@@ -24,7 +24,7 @@
               <%= link_to_edit store_credit %> &nbsp;
             <% else %>
               <%= t(:was_partially_used) %>
-            <% end %>       
+            <% end %>
             <%= link_to_delete store_credit %>
           <% else %>
             <%= t(:was_fully_used) %>
@@ -37,3 +37,4 @@
   </tbody>
 </table>
 
+<%= paginate @store_credits %>
