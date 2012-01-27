@@ -9,6 +9,8 @@ module Spree
     before_save :process_store_credit, :if => "self.user.present? && @store_credit_amount"
     after_save :ensure_sufficient_credit, :if => "self.user.present?"
 
+    validates_with StoreCreditMinimumValidator
+
     def store_credit_amount
       adjustments.store_credits.sum(:amount).abs
     end

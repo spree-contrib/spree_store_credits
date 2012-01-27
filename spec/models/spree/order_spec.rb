@@ -6,7 +6,10 @@ module Spree
     let(:line_item) { mock_model(LineItem, :variant => mock('variant'), :quantity => 5, :price => 10) }
     let(:order) { Order.create() }
 
-    before { order.stub(:user => user, :total => 50 ) }
+    before do
+      Spree::Config.set :use_store_credit_minimum => nil
+      order.stub(:user => user, :total => 50 ) 
+    end
 
     context "process_store_credit" do
       it "should create store credit adjustment when user has sufficient credit" do
@@ -194,6 +197,23 @@ module Spree
         order.payment.should_receive(:process!)
         order.process_payments!
       end
+
+    end
+
+    context "when minimum item total is set" do
+      before { order.stub(:item_total => 50, :store_credit_amount => 25) }
+      it "should be invalid when item total is less than limit" do
+        Spree::Config.set :use_store_credit_minimum => 100
+        order.valid?.should be_false
+        order.errors.should_not be_nil
+      end
+
+      it "should be valid when item total is greater than limit" do
+        Spree::Config.set :use_store_credit_minimum => 10
+        order.valid?.should be_true
+        order.errors.count.should == 0
+      end
+
 
     end
   end
