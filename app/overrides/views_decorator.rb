@@ -42,6 +42,6 @@ Deface::Override.new(:virtual_path => "spree/admin/general_settings/edit",
                      :text => "
   <p>
 	<label><%= t(\"minimum_order_amount_for_store_credit_use\") %></label>
-	<%= text_field_tag('app_configuration[preferred_use_store_credit_minimum]', Spree::Config[:use_store_credit_minimum]) %>
+	<%= text_field_tag('use_store_credit_minimum', Spree::Config[:use_store_credit_minimum]) %>
   </p>",
                      :disabled => false)

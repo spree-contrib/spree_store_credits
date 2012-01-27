@@ -5,7 +5,7 @@ module Spree
     private
 
     def find_orders_with_store_credit
-      @orders_with_store_credit = @user.orders.includes(:adjustments).where(:spree_adjustments => {:source_type => 'StoreCredit'})
+      @orders_with_store_credit ||= @user.orders.includes(:adjustments).where(:spree_adjustments => {:source_type => 'Spree::StoreCredit'})
     end
   end
 end

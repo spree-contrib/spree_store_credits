@@ -3,7 +3,7 @@ module Spree
     has_many :store_credits
 
     def has_store_credit?
-      store_credits_total > 0
+      store_credits.present?
     end
 
     def store_credits_total
