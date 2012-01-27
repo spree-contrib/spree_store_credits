@@ -1,5 +1,9 @@
-Store Credits
-=============
+Spree Store Credits
+===================
+
+[![Build
+Status](https://secure.travis-ci.org/spree/spree_store_credits.png)](http://travis-ci.org/spree/spree_store_credits)
+
 
 This Spree extension allows admins to issue arbitrary amounts of store credit to users.
 
@@ -18,13 +22,7 @@ Installation
 
     bundle install
 
-3. Copy assests / migrations (note: this will change after Rails 3.1).
+3. Copy and execute migrations:
 
-    rails g spree_store_credits:install -f
+    rails g spree_store_credits:install
 
-4. Run migrations
-
-    rake db:migrate
-
-
-Copyright (c) 2010 Roman Smirnov, released under the New BSD License

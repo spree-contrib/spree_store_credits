@@ -2,7 +2,7 @@ require 'spree'
 
 module SpreeStoreCredits
   class Engine < Rails::Engine
-    engine_name = 'spree_store_credits'
+    engine_name 'spree_store_credits'
 
     # use rspec for tests
     config.generators do |g|
@@ -24,4 +24,3 @@ module SpreeStoreCredits
 
   end
 end
-
