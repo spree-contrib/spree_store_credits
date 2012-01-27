@@ -10,6 +10,8 @@ Order.class_eval do
 
   has_many :store_credits, :class_name => 'StoreCreditAdjustment', :conditions => "source_type='StoreCredit'"
 
+  validates_with StoreCreditMinimumValidator
+
   def store_credit_amount
     store_credits.sum(:amount).abs
   end
@@ -41,6 +43,8 @@ Order.class_eval do
         sca.destroy
       end
     else
+
+
       if sca = adjustments.detect {|adjustment| adjustment.source_type == "StoreCredit" }
         sca.update_attributes({:amount => -(@store_credit_amount)})
       else
