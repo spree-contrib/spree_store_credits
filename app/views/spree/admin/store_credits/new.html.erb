@@ -1,0 +1,11 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<h1><%=t("new_store_credit")%></h1>
+
+<%= render 'spree/shared/error_messages', :target => @store_credit %>
+
+<%= form_for(:store_credit, :url => admin_user_store_credits_url(params[:user_id])) do |f| %>
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <%= render :partial => "spree/admin/shared/new_resource_links" %>
+<% end %>

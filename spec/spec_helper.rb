@@ -1,27 +1,24 @@
-# from the project root directory.
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../test_app/config/environment", __FILE__)
-require 'rspec/rails'
+# Configure Rails Environment
+ENV["RAILS_ENV"] = "test"
 
+require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+
+require 'rspec/rails'
+require 'factory_girl'
+require 'spree/url_helpers'
 require 'database_cleaner'
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
-
-require 'spree_core/testing_support/factories'
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f }
 
 # include local factories
 Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each { |f| require File.expand_path(f)}
 
+# Requires factories defined in spree_core
+require 'spree/core/testing_support/factories'
+
 RSpec.configure do |config|
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
   config.mock_with :rspec
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -30,19 +27,23 @@ RSpec.configure do |config|
   # examples within a transaction, comment the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = false
-end
-
-# https://groups.google.com/forum/m/#!msg/ruby-capybara/JI6JrirL9gM/R6YiXj4gi_UJ
-
-class ActiveRecord::Base
-  mattr_accessor :shared_connection
-  @@shared_connection = nil
-
-  def self.connection
-   @@shared_connection || retrieve_connection
+  config.before(:each) do
+    if example.metadata[:js]
+      DatabaseCleaner.strategy = :truncation, { :except => ['spree_countries', 'spree_zones', 'spree_zone_members', 'spree_states', 'spree_roles'] }
+    else
+      DatabaseCleaner.strategy = :transaction
+    end
   end
-end
 
-# Forces all threads to share the same connection. This works on
-# Capybara because it starts the web server in a thread.
-ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.include Spree::UrlHelpers
+  config.include Devise::TestHelpers, :type => :controller
+  config.include Rack::Test::Methods, :type => :requests
+end

@@ -1,2 +1,2 @@
-spec/test_app
+spec/dummy
 *.swp
