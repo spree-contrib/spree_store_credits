@@ -14,6 +14,7 @@ ru:
   you_have_store_credit: "Ваш суммарный бонус составляет %{amount}"
   was_fully_used: "был полностью использован"
   was_partially_used: "был частично использован"
+  cannot_edit_used: "Cannot be edited because it has been used"
 
   activerecord: 
     attributes: 

@@ -14,3 +14,4 @@ fr-FR:
   you_have_store_credit: "Vous avez un avoir de %{amount}."
   was_fully_used: "on été totalement utilisés"
   was_partially_used: "on été partialement utilisés"
+  cannot_edit_used: "Cannot be edited because it has been used"
