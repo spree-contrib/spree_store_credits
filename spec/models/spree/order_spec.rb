@@ -25,14 +25,14 @@ module Spree
         order.store_credit_amount.should == 45.00
       end
 
-      it "should only create adjusment with amount equal to order total" do
+      it "should only create adjustment with amount equal to order total" do
         user.stub(:store_credits_total => 100.0)
         order.store_credit_amount = 90.0
         order.save
         order.store_credit_amount.should == 50.00
       end
 
-      it "should not create adjustment when you does not have any credit" do
+      it "should not create adjustment when user does not have any credit" do
         user.stub(:store_credits_total => 0.0)
         order.store_credit_amount = 5.0
         order.save
@@ -125,7 +125,7 @@ module Spree
         order.send(:consume_users_credit)
       end
 
-      it "should reduce remaining amount on a mutliple creidts when a single credit does not satify the entire amount" do
+      it "should reduce remaining amount on a multiple credits when a single credit does not satisfy the entire amount" do
         order.stub(:store_credit_amount => 55)
         user.stub(:store_credits => [store_credit_2, store_credit_3])
         store_credit_2.should_receive(:update_attribute).with(:remaining_amount, 0)
@@ -163,7 +163,7 @@ module Spree
           user.stub(:store_credits_total => 0.0)
         end
 
-        it "should destory all store credit adjustments" do
+        it "should destroy all store credit adjustments" do
           order.payment.stub(:update_attributes_without_callbacks)
           order.send(:ensure_sufficient_credit)
           order.adjustments.store_credits.size.should == 0

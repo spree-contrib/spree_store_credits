@@ -14,3 +14,4 @@ en:
   you_have_store_credit: "You have %{amount} of store credits"
   was_fully_used: "was fully used"
   was_partially_used: "was partially used"
+  cannot_edit_used: "Cannot be edited because it has been used"
