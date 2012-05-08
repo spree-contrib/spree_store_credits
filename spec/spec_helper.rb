@@ -5,7 +5,7 @@ require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
 require 'rspec/rails'
 require 'factory_girl'
-require 'spree/url_helpers'
+require 'spree/core/url_helpers'
 require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -17,6 +17,9 @@ Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each { |f| require File.expan
 
 # Requires factories defined in spree_core
 require 'spree/core/testing_support/factories'
+require 'spree/core/testing_support/fixtures'
+
+require 'ffaker'
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -26,24 +29,9 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, comment the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = false
-  config.before(:each) do
-    if example.metadata[:js]
-      DatabaseCleaner.strategy = :truncation, { :except => ['spree_countries', 'spree_zones', 'spree_zone_members', 'spree_states', 'spree_roles'] }
-    else
-      DatabaseCleaner.strategy = :transaction
-    end
-  end
+  config.use_transactional_fixtures = true
 
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
-
-  config.include Spree::UrlHelpers
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Spree::Core::UrlHelpers
+  config.include FactoryGirl::Syntax::Methods
   config.include Rack::Test::Methods, :type => :requests
 end

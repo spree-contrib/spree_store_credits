@@ -1,3 +1,6 @@
 spec/dummy
 Gemfile.lock
 *.swp
+.bundle
+.rvmrc
+.sass-cache

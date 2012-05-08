@@ -15,6 +15,6 @@ end
 Factory.define :promotion_for_store_credits, :parent => :promotion do |f|
   f.event_name "spree.user.signup"
   f.after_create do |p|
-    p.promotion_actions [Factory(:give_store_credit_action, :promotion => p)]
+    p.promotion_actions [FactoryGirl.create(:give_store_credit_action, :promotion => p)]
   end
 end

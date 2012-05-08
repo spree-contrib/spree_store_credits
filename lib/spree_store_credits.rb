@@ -1,4 +1,5 @@
-require 'spree'
+require 'spree_core'
+require 'spree_promo'
 
 module SpreeStoreCredits
   class Engine < Rails::Engine
