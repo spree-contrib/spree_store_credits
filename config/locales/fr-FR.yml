@@ -15,3 +15,6 @@ fr-FR:
   was_fully_used: "on été totalement utilisés"
   was_partially_used: "on été partialement utilisés"
   cannot_edit_used: "Cannot be edited because it has been used"
+  errors:
+    messages:
+      store_credit_minimum_order_not_reach: "Afin d'utiliser votre avoir, le montant total de votre commande doit etre supérieur au montant minimum autorisé (%{amount})"

@@ -10,8 +10,12 @@ en:
   orders_with_store_credit: "Orders with store credit"
   remaining_amount: "Remaining amount"
   store_credit: "Store Credit"
+  store_credit_maximum_amount: "The store credit amount should be less or equal to %{amount}. This is mandatory for the order to be confirmed."
   store_credits: "Store Credits"
   you_have_store_credit: "You have %{amount} of store credits"
   was_fully_used: "was fully used"
   was_partially_used: "was partially used"
   cannot_edit_used: "Cannot be edited because it has been used"
+  errors:
+    messages:
+      store_credit_minimum_order_not_reach: "Order's item total is less than the minimum allowed (%{amount}) to use store credit."

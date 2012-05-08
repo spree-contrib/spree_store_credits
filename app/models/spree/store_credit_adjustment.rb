@@ -1,5 +1,3 @@
-module Spree
-  class StoreCreditAdjustment < Adjustment
+class Spree::StoreCreditAdjustment < Spree::Adjustment
 
-  end
 end

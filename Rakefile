@@ -18,6 +18,6 @@ end
 desc "Generates a dummy app for testing"
 task :test_app do
   ENV['LIB_NAME'] = 'spree_store_credits'
-  Rake::Task['common:test_app'].invoke
+  Rake::Task['common:test_app'].invoke 'Spree::User'
 end
 
