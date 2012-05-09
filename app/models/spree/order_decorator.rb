@@ -7,7 +7,7 @@ module Spree
     # admin app when creating a new order from the admin console
     # In that case, we create an order before assigning a user
     before_save :process_store_credit, :if => "self.user.present? && @store_credit_amount"
-    after_save :ensure_sufficient_credit, :if => "self.user.present?"
+    after_save :ensure_sufficient_credit, :if => "self.user.present? && !self.completed?"
 
     validates_with StoreCreditMinimumValidator
 
