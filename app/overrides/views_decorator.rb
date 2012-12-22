@@ -1,8 +1,8 @@
 Deface::Override.new(
-  :virtual_path => "spree/admin/configurations/index",
+  :virtual_path => "spree/admin/shared/_configuration_menu",
   :name => "store_credits_admin_configurations_menu",
-  :insert_bottom => "[data-hook='admin_configurations_menu']",
-  :text => "<%= configurations_menu_item(I18n.t('store_credits'), admin_store_credits_url, I18n.t('manage_store_credits')) %>",
+  :insert_bottom => "[data-hook='admin_configurations_sidebar_menu']",
+  :text => "<%= configurations_sidebar_menu_item t(:store_credits), admin_store_credits_url %>",
   :disabled => false)
 
 Deface::Override.new(
@@ -26,22 +26,8 @@ Deface::Override.new(
   :partial => "spree/users/store_credits",
   :disabled => false)
 
-Deface::Override.new(:virtual_path => "spree/admin/general_settings/show",
-                     :name => "admin_general_settings_show_for_sc",
-                     :insert_bottom => "[data-hook='preferences'], #preferences[data-hook]",
-                     :text => "
-<tr>
-    <th scope=\"row\"><%= t(\"minimum_order_amount_for_store_credit_use\") %>:</th>
-    <td><%=  Spree::Config[:use_store_credit_minimum] %></td>
-</tr>",
-                       :disabled => false)
-
 Deface::Override.new(:virtual_path => "spree/admin/general_settings/edit",
                      :name => "admin_general_settings_edit_for_sc",
-                     :insert_bottom => "fieldset#preferences",
-                     :text => "
-  <p>
-	<label><%= t(\"minimum_order_amount_for_store_credit_use\") %></label>
-	<%= text_field_tag('use_store_credit_minimum', Spree::Config[:use_store_credit_minimum]) %>
-  </p>",
+                     :insert_before => "[data-hook='buttons']",
+                     :partial => "spree/admin/store_credits/limit",
                      :disabled => false)

@@ -1,6 +1,7 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-<h1><%= t("listing_store_credits") %></h1>
+<h1 class="page-title "> <%= t("listing_store_credits") %></h1><br>
+
 <table class="index">
   <thead>
     <tr>
@@ -8,7 +9,6 @@
       <th><%= t("amount") %></th>
       <th><%= t("remaining_amount") %></th>
       <th><%= t("reason") %></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -21,11 +21,11 @@
         <td class="actions">
           <% if store_credit.remaining_amount > 0 %>
             <% if store_credit.amount == store_credit.remaining_amount %>
-              <%= link_to_edit store_credit %> &nbsp;
+              <%= link_to_edit store_credit, :no_text => true %> &nbsp;
             <% else %>
               <%= t(:was_partially_used) %>
             <% end %>
-            <%= link_to_delete store_credit %>
+            <%= link_to_delete store_credit, :no_text => true %>
           <% else %>
             <%= t(:was_fully_used) %>
           <% end %>
