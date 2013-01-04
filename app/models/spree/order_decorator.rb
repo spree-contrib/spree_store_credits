@@ -11,10 +11,14 @@ module Spree
 
     validates_with StoreCreditMinimumValidator
 
+    # consume users store credit once the order has completed.
+    state_machine do
+      after_transition :to => :complete, :do => :consume_users_credit
+    end
+
     def store_credit_amount
       adjustments.store_credits.sum(:amount).abs
     end
-
 
     # override core process payments to force payment present
     # in case store credits were destroyed by ensure_sufficient_credit
@@ -25,7 +29,6 @@ module Spree
         ret = payments.each(&:process!)
       end
     end
-
 
     private
 
@@ -52,10 +55,6 @@ module Spree
       update_totals
       payment.amount = total if payment
     end
-
-    # consume users store credit once the order has completed.
-    fsm = self.state_machines[:state]
-    fsm.after_transition :to => :complete, :do => :consume_users_credit
 
     def consume_users_credit
       return unless completed?
