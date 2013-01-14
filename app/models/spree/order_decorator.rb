@@ -11,10 +11,14 @@ module Spree
 
     validates_with StoreCreditMinimumValidator
 
-    # consume users store credit once the order has completed.
-    state_machine do
-      after_transition :to => :complete, :do => :consume_users_credit
+    # Finalizes an in progress order after checkout is complete.
+    # Called after transition to complete state when payments will have been processed.
+    def finalize_with_consume_users_credit!
+      finalize_without_consume_users_credit!
+      # consume users store credit once the order has completed.
+      consume_users_credit
     end
+    alias_method_chain :finalize!, :consume_users_credit
 
     def store_credit_amount
       adjustments.store_credits.sum(:amount).abs
@@ -57,7 +61,7 @@ module Spree
     end
 
     def consume_users_credit
-      return unless completed?
+      return unless completed? and user.present?
       credit_used = self.store_credit_amount
 
       user.store_credits.each do |store_credit|
