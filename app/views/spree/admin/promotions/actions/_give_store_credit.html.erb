@@ -1,6 +1,6 @@
 <p class="field">
   <label for="<%= "#{param_prefix}_preferred_amount" %>">
     <%= t(:amount) %>
-    <%= text_field_tag :preferred_amount, promotion_action.preferred_amount %>
+    <%= text_field_tag "#{param_prefix}[preferred_amount]", promotion_action.preferred_amount %>
   </label>
 </p>
