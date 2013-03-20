@@ -5,7 +5,7 @@ require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
 require 'rspec/rails'
 require 'factory_girl'
-require 'spree/url_helpers'
+require 'spree/core/url_helpers'
 require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -43,7 +43,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.include Spree::UrlHelpers
+  config.include Spree::Core::UrlHelpers
   config.include Devise::TestHelpers, :type => :controller
   config.include Rack::Test::Methods, :type => :requests
 end

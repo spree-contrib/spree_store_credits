@@ -26,3 +26,9 @@ Installation
 
     rails g spree_store_credits:install
 
+Testing
+==========
+
+1. rake test_app
+
+2. rspec
