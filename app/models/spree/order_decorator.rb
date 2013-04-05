@@ -12,11 +12,15 @@ Spree::Order.class_eval do
 
   # override core process payments to force payment present
   # in case store credits were destroyed by ensure_sufficient_credit
-  def process_payments!
-    if total > 0 && payment.nil?
+  # bind the process_payments! instance method from the core Spree Order model
+  spree_process_payments = instance_method(:process_payments!)
+
+  define_method(:process_payments!) do
+    if total > 0 && pending_payments.nil?
       false
     else
-      ret = payments.each(&:process!)
+      #execute the process_payments! method from the original Spree Order model.
+      spree_process_payments.bind(self).()
     end
   end
 
@@ -61,7 +65,7 @@ Spree::Order.class_eval do
 
     # recalc totals and ensure payment is set to new amount
     update_totals
-    payment.amount = total if payment
+    pending_payments.first.amount = total if pending_payments.first
   end
 
   def consume_users_credit
@@ -95,4 +99,5 @@ Spree::Order.class_eval do
       update!
     end
   end
+
 end
