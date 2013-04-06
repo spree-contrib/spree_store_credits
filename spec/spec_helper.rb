@@ -22,6 +22,7 @@ require 'spree/core/testing_support/fixtures'
 require 'ffaker'
 
 RSpec.configure do |config|
+  config.color = true
   config.mock_with :rspec
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

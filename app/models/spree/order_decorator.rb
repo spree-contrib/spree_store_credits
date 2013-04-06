@@ -10,19 +10,14 @@ Spree::Order.class_eval do
 
   validates_with StoreCreditMinimumValidator
 
-  # override core process payments to force payment present
-  # in case store credits were destroyed by ensure_sufficient_credit
-  # bind the process_payments! instance method from the core Spree Order model
-  spree_process_payments = instance_method(:process_payments!)
-
-  define_method(:process_payments!) do
-    if total > 0 && pending_payments.nil?
+  def process_payments_with_credits!
+    if total > 0 && pending_payments.empty?
       false
     else
-      #execute the process_payments! method from the original Spree Order model.
-      spree_process_payments.bind(self).()
+      process_payments_without_credits!
     end
   end
+  alias_method_chain :process_payments!, :credits
 
   def store_credit_amount
     adjustments.store_credits.sum(:amount).abs.to_f

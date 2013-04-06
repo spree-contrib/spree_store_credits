@@ -4,7 +4,7 @@ module Spree
   describe Order do
     let(:user) { mock_model User, :email => 'spree@example.com', :store_credits_total => 45.00 }
     let(:line_item) { mock_model(LineItem, :variant => mock('variant'), :quantity => 5, :price => 10) }
-    let(:order) { Order.create() }
+    let(:order) { Order.create }
 
     before do
       reset_spree_preferences { |config| config.use_store_credit_minimum = 0 }
@@ -48,8 +48,8 @@ module Spree
       end
 
       it "should update payment amount if credit is applied" do
-        order.stub(:payment => mock('payment', :payment_method => mock('payment method', :payment_profiles_supported? => true)))
-        order.payment.should_receive(:amount=)
+        order.stub_chain(:pending_payments, :first => mock('payment', :payment_method => mock('payment method', :payment_profiles_supported? => true)))
+        order.pending_payments.first.should_receive(:amount=)
         order.store_credit_amount = 5.0
         order.save
       end
@@ -188,24 +188,15 @@ module Spree
     end
 
     context "process_payments!" do
-      it "should return false when total is greater than zero and payment is nil" do
-        order.stub(:payment => nil)
+
+      it "should return false when total is greater than zero and payments are empty" do
+        order.stub(:pending_payments => [])
         order.process_payments!.should be_false
       end
 
-      it "should return true when total is zero and payment is nil" do
-        order.stub(:total => 0.0)
-        order.process_payments!.should be_true
-      end
-
-      it "should return true when total is zero and payment is not nil" do
-        order.stub(:payment => mock_model(Payment, :process! => true))
-        order.process_payments!.should be_true
-      end
-
-      it "should process payment when total is zero and payment is not nil" do
-        order.stub(:payments => [mock_model(Payment)])
-        order.payment.should_receive(:process!)
+      it "should process payment when total is zero and payments is not empty" do
+        order.stub(:pending_payments => [mock_model(Payment)])
+        order.should_receive(:process_payments_without_credits!)
         order.process_payments!
       end
 
