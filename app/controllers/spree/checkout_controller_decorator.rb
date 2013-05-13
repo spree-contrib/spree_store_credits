@@ -7,7 +7,7 @@ module Spree
       load_order
 
       return unless params[:order] && params[:order][:store_credit_amount]
-      store_credit_amount = [BigDecimal.new(params[:order][:store_credit_amount]), current_user.store_credits_total].min
+      store_credit_amount = [BigDecimal.new(params[:order][:store_credit_amount]), spree_current_user.store_credits_total].min
       if store_credit_amount >= (current_order.total + @order.store_credit_amount)
         params[:order].delete(:source_attributes)
         params.delete(:payment_source)
