@@ -1,19 +1,19 @@
 <% if @user.has_store_credit? %>
-  <h3><%= t("store_credits") %></h3>
+  <h3><%= Spree.t("store_credits") %></h3>
   <p>
-  <%= t('current_store_credit') %>: <strong><%= number_to_currency @user.store_credits_total %></strong>
+  <%= Spree.t('current_store_credit') %>: <strong><%= number_to_currency @user.store_credits_total %></strong>
   </p>
   <% if @orders_with_store_credit.present? %>
-  <h3><%= t('orders_with_store_credit') %></h3>
+  <h3><%= Spree.t('orders_with_store_credit') %></h3>
   <table class="order-summary">
     <thead>
       <tr>
-        <th><%= t("order_number") %></th>
-        <th><%= t("order_date") %></th>
-        <th><%= t("status") %></th>
-        <th><%= t("customer") %></th>
-        <th><%= t("total") %></th>
-        <th><%= t("store_credit") %></th>
+        <th><%= Spree.t("order_number") %></th>
+        <th><%= Spree.t("order_date") %></th>
+        <th><%= Spree.t("status") %></th>
+        <th><%= Spree.t("customer") %></th>
+        <th><%= Spree.t("total") %></th>
+        <th><%= Spree.t("store_credit") %></th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
       <tr class="<%= cycle('even', 'odd') %>">
         <td><%= link_to order.number, order_url(order) %></td>
         <td><%=order.created_at.to_date%></td>
-        <td><%= t(order.state).titleize %></td>
+        <td><%= Spree.t(order.state).titleize %></td>
         <td><%= order.user.email if order.user %></td>
         <td><%= number_to_currency order.total %></td>
         <td><%= number_to_currency order.store_credit_amount %></td>

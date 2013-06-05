@@ -6,7 +6,7 @@ module Spree
     private
     def check_amounts
       if (@store_credit.remaining_amount < @store_credit.amount)
-        flash[:error] = I18n.t(:cannot_edit_used)
+        flash[:error] = Spree.t(:cannot_edit_used)
         redirect_to admin_store_credits_path
       end
     end

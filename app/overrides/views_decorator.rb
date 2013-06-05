@@ -2,14 +2,14 @@ Deface::Override.new(
   :virtual_path => "spree/admin/shared/_configuration_menu",
   :name => "store_credits_admin_configurations_menu",
   :insert_bottom => "[data-hook='admin_configurations_sidebar_menu']",
-  :text => "<%= configurations_sidebar_menu_item t(:store_credits), admin_store_credits_url %>",
+  :text => "<%= configurations_sidebar_menu_item Spree.t(:store_credits), admin_store_credits_url %>",
   :disabled => false)
 
 Deface::Override.new(
   :virtual_path => "spree/admin/users/index",
   :name => "store_credits_admin_users_index_row_actions",
   :insert_bottom => "[data-hook='admin_users_index_row_actions']",
-  :text => "&nbsp;<%= link_to_with_icon('add', t('add_store_credit'), new_admin_user_store_credit_url(user)) %>",
+  :text => "&nbsp;<%= link_to_with_icon('add', Spree.t('add_store_credit'), new_admin_user_store_credit_url(user)) %>",
   :disabled => false)
 
 Deface::Override.new(

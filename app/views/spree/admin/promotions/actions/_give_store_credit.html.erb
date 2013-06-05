@@ -1,6 +1,6 @@
 <p class="field">
   <% field_name = "#{param_prefix}[preferred_amount]" %>
-  <%= label_tag field_name, t(:preferred_amount) %>
+  <%= label_tag field_name, Spree.t(:preferred_amount) %>
   <%= preference_field_tag(field_name,
                         promotion_action.get_preference(:amount),
                        :type => promotion_action.preferred_amount) %>

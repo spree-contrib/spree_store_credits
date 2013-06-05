@@ -1,21 +1,22 @@
 ---
 pt-BR:
-  add_store_credit: "Adicionar crédito"
-  current_store_credit: "Crédito atual"
-  editing_store_credit: "Editar crédito"
-  enter_desired_amount_of_store_credit: "Informe o montante de crédito que deseja usar"
-  listing_store_credits: "Créditos"
-  new_store_credit: "Novo crédito"
-  manage_store_credits: "Gerenciar créditos"
-  orders_with_store_credit: "Pedidos com crédito"
-  remaining_amount: "Montante restante"
-  store_credit: "Crédito da Loja"
-  store_credit_maximum_amount: "O montante de crédito deve ser menor ou igual a %{amount}. Isto é obrigatório para o pedido ser confirmado."
-  store_credits: "Créditos da Loja"
-  you_have_store_credit: "Você tem %{amount} de crédito da loja"
-  was_fully_used: "foi totalmente usado"
-  was_partially_used: "foi parcialmente usado"
-  cannot_edit_used: "Não pode ser editado porque já foi usado"
-  errors:
-    messages:
-      store_credit_minimum_order_not_reach: "Total do item do pedido é menor do que o mínimo permitido (%{amount}) para usar crédito da loja."
+  spree:
+    add_store_credit: "Adicionar crédito"
+    current_store_credit: "Crédito atual"
+    editing_store_credit: "Editar crédito"
+    enter_desired_amount_of_store_credit: "Informe o montante de crédito que deseja usar"
+    listing_store_credits: "Créditos"
+    new_store_credit: "Novo crédito"
+    manage_store_credits: "Gerenciar créditos"
+    orders_with_store_credit: "Pedidos com crédito"
+    remaining_amount: "Montante restante"
+    store_credit: "Crédito da Loja"
+    store_credit_maximum_amount: "O montante de crédito deve ser menor ou igual a %{amount}. Isto é obrigatório para o pedido ser confirmado."
+    store_credits: "Créditos da Loja"
+    you_have_store_credit: "Você tem %{amount} de crédito da loja"
+    was_fully_used: "foi totalmente usado"
+    was_partially_used: "foi parcialmente usado"
+    cannot_edit_used: "Não pode ser editado porque já foi usado"
+    errors:
+      messages:
+        store_credit_minimum_order_not_reach: "Total do item do pedido é menor do que o mínimo permitido (%{amount}) para usar crédito da loja."

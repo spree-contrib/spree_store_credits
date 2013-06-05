@@ -1,20 +1,21 @@
 ---
 fr-FR:
-  add_store_credit: "Ajouter un avoir"
-  current_store_credit: "Solde de vos avoirs"
-  editing_store_credit: "Editer les avoirs"
-  enter_desired_amount_of_store_credit: "Entrer un montant d'avoir à utiliser"
-  listing_store_credits: "Listes des avoirs"
-  new_store_credit: "Nouvel avoir"
-  manage_store_credits: "Gérer les avoirs"
-  orders_with_store_credit: "Commandes utilisant des avoirs"
-  remaining_amount: "Montant restant"
-  store_credit: "Avoirs"
-  store_credits: "Avoirs sur la boutique"
-  you_have_store_credit: "Vous avez un avoir de %{amount}."
-  was_fully_used: "on été totalement utilisés"
-  was_partially_used: "on été partialement utilisés"
-  cannot_edit_used: "Cannot be edited because it has been used"
-  errors:
-    messages:
-      store_credit_minimum_order_not_reach: "Afin d'utiliser votre avoir, le montant total de votre commande doit etre supérieur au montant minimum autorisé (%{amount})"
+  spree:
+    add_store_credit: "Ajouter un avoir"
+    current_store_credit: "Solde de vos avoirs"
+    editing_store_credit: "Editer les avoirs"
+    enter_desired_amount_of_store_credit: "Entrer un montant d'avoir à utiliser"
+    listing_store_credits: "Listes des avoirs"
+    new_store_credit: "Nouvel avoir"
+    manage_store_credits: "Gérer les avoirs"
+    orders_with_store_credit: "Commandes utilisant des avoirs"
+    remaining_amount: "Montant restant"
+    store_credit: "Avoirs"
+    store_credits: "Avoirs sur la boutique"
+    you_have_store_credit: "Vous avez un avoir de %{amount}."
+    was_fully_used: "on été totalement utilisés"
+    was_partially_used: "on été partialement utilisés"
+    cannot_edit_used: "Cannot be edited because it has been used"
+    errors:
+      messages:
+        store_credit_minimum_order_not_reach: "Afin d'utiliser votre avoir, le montant total de votre commande doit etre supérieur au montant minimum autorisé (%{amount})"

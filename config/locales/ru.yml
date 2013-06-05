@@ -1,22 +1,23 @@
 ---
 ru:
-  add_store_credit: "Дать бонус"
-  current_store_credit: "Текущий бонус"
-  editing_store_credit: "Редактирование бонуса"
-  enter_desired_amount_of_store_credit: "Введите сумму, которую Вы хотите использовать"
-  listing_store_credits: "Бонусы"
-  new_store_credit: "Новый бонус"
-  manage_store_credits: "Управление кредитами магазина (бонусами)"
-  orders_with_store_credit: "Заказы, частично или полностью оплаченные бонусами"
-  remaining_amount: "Remaining amount"
-  store_credit: "Бонус"
-  store_credits: "Бонусы"
-  you_have_store_credit: "Ваш суммарный бонус составляет %{amount}"
-  was_fully_used: "был полностью использован"
-  was_partially_used: "был частично использован"
-  cannot_edit_used: "Cannot be edited because it has been used"
+  spree:
+    add_store_credit: "Дать бонус"
+    current_store_credit: "Текущий бонус"
+    editing_store_credit: "Редактирование бонуса"
+    enter_desired_amount_of_store_credit: "Введите сумму, которую Вы хотите использовать"
+    listing_store_credits: "Бонусы"
+    new_store_credit: "Новый бонус"
+    manage_store_credits: "Управление кредитами магазина (бонусами)"
+    orders_with_store_credit: "Заказы, частично или полностью оплаченные бонусами"
+    remaining_amount: "Remaining amount"
+    store_credit: "Бонус"
+    store_credits: "Бонусы"
+    you_have_store_credit: "Ваш суммарный бонус составляет %{amount}"
+    was_fully_used: "был полностью использован"
+    was_partially_used: "был частично использован"
+    cannot_edit_used: "Cannot be edited because it has been used"
 
-  activerecord: 
-    attributes: 
-      order:
-        remove_store_credits: "Отменить использование бонуса"
+    activerecord: 
+      attributes: 
+        order:
+          remove_store_credits: "Отменить использование бонуса"
