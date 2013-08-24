@@ -1,5 +1,4 @@
 Spree::Order.class_eval do
-  attr_accessible :store_credit_amount, :remove_store_credits
   attr_accessor :store_credit_amount, :remove_store_credits
 
   # the check for user? below is to ensure we don't break the

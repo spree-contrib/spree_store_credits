@@ -3,4 +3,5 @@ Gemfile.lock
 *.swp
 .bundle
 .rvmrc
+coverage
 .sass-cache

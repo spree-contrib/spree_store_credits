@@ -2,6 +2,10 @@ module Spree
   CheckoutController.class_eval do
     before_filter :remove_payments_attributes_if_total_is_zero
 
+    [:store_credit_amount, :remove_store_credits].each do |attrib| 
+      Spree::PermittedAttributes.checkout_attributes << attrib unless Spree::PermittedAttributes.checkout_attributes.include?(attrib)
+    end
+
     private
     def remove_payments_attributes_if_total_is_zero
       load_order
