@@ -32,7 +32,7 @@ Configuration
 
 By default Spree Store Credits does not require your order total to be above an amount to apply store credits.
 
-To chanage this, use the :use_store_credit_minimum preference. For information on setting Spree preferences visit http://guides.spreecommerce.com/developer/preferences.html
+To change this, use the :use_store_credit_minimum preference. For information on setting Spree preferences visit http://guides.spreecommerce.com/developer/preferences.html
 
 One possible implementation looks like this:
 
