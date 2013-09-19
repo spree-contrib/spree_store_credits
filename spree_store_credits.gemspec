@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_frontend', spree_version
   s.add_dependency 'spree_backend', spree_version
+  s.add_development_dependency 'spree_sample', spree_version
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'ffaker'
