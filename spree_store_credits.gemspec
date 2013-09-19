@@ -17,10 +17,11 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency 'spree_api'
-  s.add_dependency 'spree_core', '~> 2.1.0.beta'
-  s.add_dependency 'spree_frontend'
-  s.add_dependency 'spree_backend'
+  spree_version = '~> 2.1.0'
+  s.add_dependency 'spree_api', spree_version
+  s.add_dependency 'spree_core', spree_version
+  s.add_dependency 'spree_frontend', spree_version
+  s.add_dependency 'spree_backend', spree_version
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'ffaker'
