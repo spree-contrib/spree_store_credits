@@ -5,7 +5,7 @@
        :amount => number_to_currency(spree_current_user.store_credits_total))%>
 </p>
 <p>
-  <label><%= t('enter_desired_amount_of_store_credit') %></label><br />
-  <%= form.text_field :store_credit_amount, :size => 19, :value => usable_amount, :data => { :store_credit_maximum_amount => usable_amount, :store_credit_maximum_amount_message => t('store_credit_maximum_amount', :amount => number_to_currency(@order.store_credit_maximum_usable_amount)) } %>
+  <label><%= Spree.t('enter_desired_amount_of_store_credit') %></label><br />
+  <%= form.text_field :store_credit_amount, :size => 19, :value => usable_amount, :data => { :store_credit_maximum_amount => usable_amount, :store_credit_maximum_amount_message => Spree.t('store_credit_maximum_amount', :amount => number_to_currency(@order.store_credit_maximum_usable_amount)) } %>
 </p>
 <% end %>
