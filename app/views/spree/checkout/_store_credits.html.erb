@@ -1,7 +1,7 @@
 <% if (spree_current_user && spree_current_user.store_credits_total > 0) %>
 <% usable_amount = number_with_precision(@order.store_credit_maximum_usable_amount, :precision => 2, :separator => '.', :delimiter => '') %>
 <br style='clear:both;' />
-<p><%= t('you_have_store_credit',
+<p><%= Spree.t('you_have_store_credit',
        :amount => number_to_currency(spree_current_user.store_credits_total))%>
 </p>
 <p>
