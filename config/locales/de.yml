@@ -1,0 +1,21 @@
+---
+de:
+  add_store_credit: "Guthaben hinzufügen"
+  current_store_credit: "Aktuelles Guthaben"
+  editing_store_credit: "Guthaben bearbeiten"
+  enter_desired_amount_of_store_credit: "Geben Sie den Betrag an, den Sie einsetzen möchten"
+  listing_store_credits: "Guthaben"
+  new_store_credit: "Neues Guthaben"
+  manage_store_credits: "Guthaben verwalten"
+  orders_with_store_credit: "Bestellungen mit Guthaben"
+  remaining_amount: "Verfügbarer Betrag"
+  store_credit: "Guthaben"
+  store_credit_maximum_amount: "Der Betrag muss kleiner oder gleich %{amount} sein. Diese Angabe ist zwingend notwendig, um die Bestellung abzuschließen."
+  store_credits: "Guthaben"
+  you_have_store_credit: "Sie haben %{amount} Guthaben"
+  was_fully_used: "wurde vollständig aufgebraucht"
+  was_partially_used: "wurde teilweise aufgebraucht"
+  cannot_edit_used: "kann nicht bearbeitet werden, das es bereits verwendet wurde"
+  errors:
+    messages:
+      store_credit_minimum_order_not_reach: "Die Bestellsumme ist kleiner als der Mindestbestellwert (%{amount}) für Bestellungen, die mit Guthaben bezahlt werden können."
