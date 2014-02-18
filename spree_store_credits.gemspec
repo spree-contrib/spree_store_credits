@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails', '~> 4.2.1'
   s.add_development_dependency 'database_cleaner', '1.0.1'
   s.add_development_dependency 'launchy'
-  s.add_development_dependency 'debugger'
+  s.add_development_dependency 'pry'
   s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'selenium-webdriver', '2.35.1'
