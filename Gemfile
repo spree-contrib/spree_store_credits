@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+version = '2-2-stable'
 group :development, :test do
   version = '2-2-stable'
   gem 'spree_api', github: 'spree/spree', branch: version
