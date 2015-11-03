@@ -1,8 +1,15 @@
-<%= f.field_container :amount do %>
-  <%= f.label :amount, Spree.t("amount")%><br />
-  <%= f.text_field :amount %>
-<% end %>
-<%= f.field_container :reason do %>
-  <%= f.label :reason, Spree.t("reason")%><br />
-  <%= f.text_field :reason %>
-<% end %>
+<div data-hook="admin_tax_category_form_fields" class="row">
+  <div class="alpha four columns">
+    <%= f.field_container :amount do %>
+      <%= f.label :amount, Spree.t("amount") %><br />
+      <%= f.text_field :amount, class: 'fullwidth' %>
+    <% end %>
+  </div>
+  
+  <div class="eight columns omega">
+    <%= f.field_container :reason do %>
+      <%= f.label :reason, Spree.t("reason")%><br />
+      <%= f.text_field :reason, class: 'fullwidth' %>
+    <% end %>
+  </div>
+</div>

@@ -1,10 +1,14 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-<h1><%=Spree.t("editing_store_credit")%></h1>
+<% content_for :page_title do %>
+  <%=Spree.t("editing_store_credit")%>
+<% end %>
 
 <%= render 'spree/shared/error_messages', :target => @store_credit %>
 
 <%= form_for(:store_credit, :url => object_url, :html => { :method => :put }) do |f| %>
-  <%= render :partial => "form", :locals => { :f => f } %>
-  <%= render :partial => "spree/admin/shared/edit_resource_links" %>
+  <fieldset class="no-border-top">
+    <%= render :partial => "form", :locals => { :f => f } %>
+    <%= render :partial => "spree/admin/shared/edit_resource_links" %>
+  </fieldset>
 <% end %>

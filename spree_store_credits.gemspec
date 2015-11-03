@@ -7,17 +7,17 @@ Gem::Specification.new do |s|
   s.version     = '1.1.1'
   s.authors     = ["Roman Smirnov", "Brian Quinn"]
   s.email       = 'roman@railsdog.com'
-  s.homepage    = 'http://github.com/spree/spree-store-credits'
+  s.homepage    = 'http://github.com/spree-contrib/spree_store_credits'
   s.summary     = 'Provides store credits for a Spree store.'
   s.description = 'Provides store credits for a Spree store.'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 2.0.0'
   s.rubygems_version      = '1.3.6'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  spree_version = '~> 2.2.0.beta'
+  spree_version = '~> 2.4.0'
   s.add_dependency 'spree_api', spree_version
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_frontend', spree_version

@@ -10,7 +10,7 @@ Spree::Order.class_eval do
   validates_with StoreCreditMinimumValidator
 
   def process_payments_with_credits!
-    if total > 0 && pending_payments.empty?
+    if total > 0 && unprocessed_payments.empty?
       false
     else
       process_payments_without_credits!
@@ -53,13 +53,13 @@ Spree::Order.class_eval do
         sca.update_attributes({:amount => -(@store_credit_amount)})
       else
         # create adjustment off association to prevent reload
-        sca = adjustments.store_credits.create(:label => Spree.t(:store_credit) , :amount => -(@store_credit_amount))
+        sca = adjustments.store_credits.create(:label => Spree.t(:store_credit) , :amount => -(@store_credit_amount), :order_id => self.id)
       end
     end
 
     # recalc totals and ensure payment is set to new amount
     update_totals
-    pending_payments.first.amount = total if pending_payments.first
+    unprocessed_payments.first.update_column(:amount, total) if unprocessed_payments.first
   end
 
   def consume_users_credit
@@ -90,6 +90,7 @@ Spree::Order.class_eval do
       # user's credit does not cover all adjustments.
       adjustments.store_credits.destroy_all
 
+      updater.update_payment_state
       update!
     end
   end

@@ -159,7 +159,7 @@ module Spree
 
 
     context "ensure_sufficient_credit" do
-      let(:order) { create(:completed_order_with_totals, store_credit_amount: 35, user: user)}
+      let(:order) { create(:order_with_line_items, payment_state: 'paid', state: 'complete', store_credit_amount: 35, user: user)}
       let!(:payment) { create(:payment, order: order, amount: 40, state: 'completed')}
 
       before do
