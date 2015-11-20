@@ -2,6 +2,7 @@
 ru:
   spree:
     add_store_credit: "Дать бонус"
+    created_by: "Создал"
     current_store_credit: "Текущий бонус"
     editing_store_credit: "Редактирование бонуса"
     enter_desired_amount_of_store_credit: "Введите сумму, которую Вы хотите использовать"

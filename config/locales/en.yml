@@ -2,6 +2,7 @@
 en:
   spree:
     add_store_credit: "Add store credit"
+    created_by: "Created by"
     current_store_credit: "Current store credit"
     editing_store_credit: "Editing store credit"
     enter_desired_amount_of_store_credit: "Enter amount, which you want to use"

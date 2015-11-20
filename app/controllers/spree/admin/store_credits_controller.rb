@@ -29,5 +29,9 @@ module Spree
       [:user_id, :amount, :reason, :remaining_amount]
     end
 
+    def build_resource
+      Spree::StoreCredit.new(admin_id: spree_current_user.id)
+    end
+
   end
 end

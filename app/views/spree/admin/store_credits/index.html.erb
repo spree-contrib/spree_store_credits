@@ -12,6 +12,7 @@
       <th><%= Spree.t("amount") %></th>
       <th><%= Spree.t("remaining_amount") %></th>
       <th><%= Spree.t("reason") %></th>
+      <th><%= Spree.t("created_by") %></th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,7 @@
         <td><%= number_to_currency store_credit.amount %></td>
         <td><%= number_to_currency store_credit.remaining_amount %></td>
         <td><%= store_credit.reason %></td>
+        <td><%= link_to store_credit.creator.email, admin_user_url(store_credit.creator) if store_credit.creator.present? %></td>
         <td class="actions">
           <% if store_credit.remaining_amount > 0 %>
             <% if store_credit.amount == store_credit.remaining_amount %>
@@ -32,10 +34,11 @@
           <% else %>
             <%= Spree.t(:was_fully_used) %>
           <% end %>
+        </td>
       </tr>
     <% end %>
     <% if @store_credits.empty? %>
-      <tr><td colspan="4"><%= Spree.t(:none) %></td></tr>
+      <tr><td colspan="5"><%= Spree.t(:none) %></td></tr>
     <% end %>
   </tbody>
 </table>
