@@ -1,3 +1,7 @@
+# ⚠️ Deprecation notice ⚠️
+Since [Spree 3.1](https://guides.spreecommerce.org/release_notes/3_1_0.html) this extension is deprecated and not needed. Store Credits were merged into Spree core.
+
+
 Spree Store Credits
 ===================
 
